@@ -4,17 +4,33 @@ namespace BowlingGame.Tests
 {
     public class BowlingGameTest
     {
+        private readonly Game _game;
+
+        public BowlingGameTest()
+        {
+            _game = new();
+        }
+
         [Fact]
         public void TestGutterGame()
         {
-            var game = new Game();
+            RollManyTimes(20, 0);
+            Assert.Equal(0, _game.Score);
+        }
 
-            for (var rollCount = 0; rollCount < 20; rollCount++)
+        [Fact]
+        public void TestAllOnes()
+        {
+            RollManyTimes(20, 1);
+            Assert.Equal(20, _game.Score);
+        }
+
+        private void RollManyTimes(int timesToRoll, int pins)
+        {
+            for (var i = 0; i < timesToRoll; i++)
             {
-                game.Roll(0);
+                _game.Roll(pins);
             }
-
-            Assert.Equal(0, game.Score);
         }
     }
 }

@@ -2,8 +2,10 @@
 {
     public class Game
     {
-        public int Score => 0;
+        private int _score;
 
-        public void Roll(int pins) { }
+        public int Score => _score;
+
+        public void Roll(int pins) => _score += pins;
     }
 }
