@@ -32,5 +32,20 @@ namespace BowlingGame.Tests
                 _game.Roll(pins);
             }
         }
+
+        [Fact]
+        public void TestOneSpare()
+        {
+            RollSpare();
+            _game.Roll(3);
+            RollManyTimes(17, 0);
+            Assert.Equal(16, _game.Score);
+        }
+
+        private void RollSpare()
+        {
+            _game.Roll(5);
+            _game.Roll(5); // Spare
+        }
     }
 }
